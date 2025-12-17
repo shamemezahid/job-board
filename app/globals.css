@@ -24,3 +24,12 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.flexible-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+}
+
+.gradient-bg {
+  background: linear-gradient(203deg, rgba(0, 71, 229, 0.05) 23.16%, rgba(94, 44, 189, 0.05) 36.08%, rgba(177, 7, 232, 0.05) 57.16%, rgba(124, 113, 255, 0.05) 78.23%, rgba(14, 155, 216, 0.05) 90.55%), #FFF;
+}
