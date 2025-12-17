@@ -87,10 +87,10 @@ export default function Home() {
                   }`}
               >
                 <div className="flex justify-between items-center mb-2 gap-4">
-                  <span className="flex gap-2">
+                  <span className="flex">
                 <p className="text-sm text-gray-600">{job.company?.name || 'N/A'}</p>
                   {job.city && job.city !== 'N/A' && (
-                      <span className="text-sm text-gray-500">in {job.city}</span>
+                      <span className="text-sm text-gray-500">, {" "}{job.city}</span>
                     )}
                 </span>
                   <span className="text-sm text-sky-700 capitalize">{job.status}</span>
