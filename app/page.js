@@ -87,14 +87,16 @@ export default function Home() {
                   }`}
               >
                 <div className="flex justify-between items-center mb-2 gap-4">
-                  <p className="text-sm text-gray-400">{job.company?.name || 'N/A'}</p>
+                  <span className="flex gap-2">
+                <p className="text-sm text-gray-600">{job.company?.name || 'N/A'}</p>
+                  {job.city && job.city !== 'N/A' && (
+                      <span className="text-sm text-gray-500">in {job.city}</span>
+                    )}
+                </span>
                   <span className="text-sm text-sky-700 capitalize">{job.status}</span>
                 </div>
                 <h2 className="flex items-baseline gap-[6px] mb-2">
                   <span className="text-base font-medium text-gray-800">{job.title}</span>
-                  {job.city && job.city !== 'N/A' && (
-                    <span className="text-sm text-gray-700">in {job.city}</span>
-                  )}
                 </h2>
                 <div className="space-y-2">
                   <div className="flex items-center gap-3 text-sm text-gray-700">
