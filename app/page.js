@@ -61,7 +61,7 @@ export default function Home() {
         <div className={`left-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-2 w-full h-full overflow-y-hidden overflow-x-visible transition-all duration-300 ${selectedJob ? 'opacity-0 -translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0' : 'opacity-100 translate-x-0'}`}>
           <div className="sticky flex flex-col p-5 pb-2 md:p-2">
             <div className="flex justify-between items-center mb-2 gap-3 flex-col md:flex-row">
-              <h1 className="text-xl font-medium text-gray-800 text-center md:text-left">Active jobs at Airwork AI</h1>
+              <h1 className="text-xl font-medium text-gray-800 text-center md:text-left">Jobs at Airwork AI</h1>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
@@ -437,7 +437,7 @@ export default function Home() {
               </div>
             </div>
           ) : (
-            <div className="m-8 h-full flex flex-col items-center justify-center">
+            <div className="h-full flex flex-col items-center justify-center">
               <img className="h-8 mb-12" src="https://airwork.ai/assets/airwork-logos/wide/airwork-blue-new.svg"></img>
               <p className="text-2x text-center text-sky-900 mb-3">Welcome to all jobs at Airwork AI</p>
               <p className="text-sm text-center text-gray-400">Select a job to view details</p>
