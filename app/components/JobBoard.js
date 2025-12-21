@@ -38,7 +38,7 @@ export default function JobBoard() {
             case 'salary':
                 return (b.maxSalary || 0) - (a.maxSalary || 0);
             case 'deadline':
-                return new Date(a.deadline) - new Date(b.deadline);
+                return new Date(b.deadline) - new Date(a.deadline);
             case 'posted':
                 return new Date(b.publishedDate) - new Date(a.publishedDate);
             default:
@@ -59,7 +59,7 @@ export default function JobBoard() {
 
             {/* Left panel */}
             <div className={`left-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-2 w-full h-full overflow-y-hidden overflow-x-visible transition-all duration-300 ${selectedJob ? 'opacity-0 -translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0' : 'opacity-100 translate-x-0'}`}>
-                <div className="sticky flex flex-col p-5 pb-2 md:p-2">
+                <div className="sticky flex flex-col p-5 pb-1 md:p-2">
                     <div className="flex justify-between items-center mb-2 gap-3 flex-col md:flex-row">
                         <h1 className="text-lg md:text-xl font-medium text-gray-800 text-center md:text-left">Jobs at Airwork AI</h1>
                         <select
@@ -97,9 +97,6 @@ export default function JobBoard() {
                                 </div>
                                 <h2 className="flex items-baseline gap-[6px] mb-2">
                                     <span className="text-base font-medium text-gray-800">{job.title}</span>
-                                    {job.city && job.city !== 'N/A' && (
-                                        <span className="text-sm text-gray-700">in {job.city}</span>
-                                    )}
                                 </h2>
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-3 text-sm text-gray-700">
@@ -109,10 +106,13 @@ export default function JobBoard() {
                                         <span className="text-gray-300">|</span>
                                         <span>{job.natureOfJob || 'N/A'}</span>
                                     </div>
-                                    <div className="flex justify-between">
-                                        <span className="text-sm text-gray-400">Deadline</span>
+                                    <div className="flex justify-between text-sm text-gray-700">
+                                        <span>{job.currency} {job.minSalary?.toLocaleString()} - {job.maxSalary?.toLocaleString() || 'N/A'}</span>
+                                        <span className="flex items-center gap-2">
+                                            <span className="text-sm text-gray-400">Deadline</span>
                                         <span className={`text-sm ${new Date(job.deadline) < new Date() ? 'text-red-900' : 'text-gray-700'}`}>
                                             {new Date(job.deadline).toLocaleDateString()}
+                                        </span>
                                         </span>
                                     </div>
                                 </div>
