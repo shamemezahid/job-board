@@ -31,6 +31,17 @@ export default function JobBoard() {
         }
     }, [selectedJob]);
 
+    useEffect(() => {
+        const handleEscape = (e) => {
+            if (e.key === 'Escape' && selectedJob) {
+                setSelectedJob(null);
+            }
+        };
+
+        window.addEventListener('keydown', handleEscape);
+        return () => window.removeEventListener('keydown', handleEscape);
+    }, [selectedJob]);
+
     const filteredJobs = jobs.sort((a, b) => {
         switch (sortBy) {
             case 'title':
