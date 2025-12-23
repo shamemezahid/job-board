@@ -59,19 +59,18 @@ export default function JobBoard() {
 
     if (loading) {
         return (
-            <div className="min-h-screen gradient-bg flex items-center justify-center">
+            <div className="gradient-bg flex items-center justify-center">
                 <p className="text-sm text-gray-400">Loading jobs...</p>
             </div>
         );
     }
 
     return (
-        <div className="h-svh md:grid md:grid-cols-6 w-full gap-4 p-12 md:p-6 relative">
-
+        <div className="md:grid md:grid-cols-6 w-full h-full gap-4 p-12 md:p-6 relative">
             {/* Left panel */}
             <div className={`left-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-2 w-full h-full overflow-y-hidden overflow-x-visible transition-all duration-300 ${selectedJob ? 'opacity-0 -translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0' : 'opacity-100 translate-x-0'}`}>
-                <div className="sticky flex flex-col p-5 pb-1 md:p-2">
-                    <div className="flex justify-between items-center mb-2 gap-3 flex-col md:flex-row">
+                <div className="sticky top-2 flex flex-col p-5 pb-1 md:p-2">
+                    <div className="flex justify-between items-center mb-4 gap-3 flex-col md:flex-row">
                         <h1 className="text-lg md:text-xl font-medium text-gray-800 text-center md:text-left">Jobs at Airwork AI</h1>
                         <select
                             value={sortBy}
@@ -89,7 +88,7 @@ export default function JobBoard() {
                 {/* Job Cards */}
                 <div className="p-5 md:p-2 h-full overflow-y-scroll overflow-x-visible grid grid-cols-1 gap-4 pb-64">
                     {filteredJobs.length === 0 ? (
-                        <div className="h-full flex items-center justify-center">
+                        <div className="flex items-center justify-center">
                             <p className="text-sm text-gray-400">No jobs available at the moment</p>
                         </div>
                     ) : (
@@ -121,9 +120,9 @@ export default function JobBoard() {
                                         <span>{job.currency} {job.minSalary?.toLocaleString()} - {job.maxSalary?.toLocaleString() || 'N/A'}</span>
                                         <span className="flex items-center gap-2">
                                             <span className="text-sm text-gray-400">Deadline</span>
-                                        <span className={`text-sm ${new Date(job.deadline) < new Date() ? 'text-red-900' : 'text-gray-700'}`}>
-                                            {new Date(job.deadline).toLocaleDateString()}
-                                        </span>
+                                            <span className={`text-sm ${new Date(job.deadline) < new Date() ? 'text-red-900' : 'text-gray-700'}`}>
+                                                {new Date(job.deadline).toLocaleDateString()}
+                                            </span>
                                         </span>
                                     </div>
                                 </div>
@@ -134,10 +133,9 @@ export default function JobBoard() {
             </div>
 
             {/* Right panel */}
-            <div ref={rightPanelRef} className={`right-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-4 w-full h-full bg-white rounded-none md:rounded-3xl overflow-y-scroll transition-all duration-300 ${selectedJob ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0'}`}>
+            <div ref={rightPanelRef} className={`right-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-4 w-full bg-white rounded-none md:rounded-3xl overflow-y-scroll transition-all duration-300 ${selectedJob ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0'}`}>
                 {selectedJob ? (
                     <div className="m-8 space-y-6">
-
                         {/* Back Button for Mobile */}
                         <button onClick={() => setSelectedJob(null)} className="flex gap-2 items-center justify-start text-gray-500 cursor-pointer md:hidden mb-5">
                             <ArrowLeftIcon className="h-4 w-4 text-gray-400" />
@@ -458,7 +456,7 @@ export default function JobBoard() {
                         </div>
                     </div>
                 ) : (
-                    <div className="h-full flex flex-col items-center justify-center">
+                    <div className="w-full h-full flex flex-col items-center justify-center">
                         <img className="h-8 mb-12" src="https://airwork.ai/assets/airwork-logos/wide/airwork-blue-new.svg"></img>
                         <p className="text-2x text-center text-sky-900 mb-3">Welcome to all jobs at Airwork AI</p>
                         <p className="text-sm text-center text-gray-400">Select a job to view details</p>

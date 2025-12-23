@@ -3,7 +3,7 @@
 import JobBoard from './components/JobBoard';
 
 export default function Home() {
-  return (<div className="min-h-screen gradient-bg overflow-hidden">
+  return (<div className="gradient-bg h-full overflow-hidden">
     <JobBoard />;
   </div>);
 }
