@@ -66,7 +66,7 @@ export default function JobBoard() {
     }
 
     return (
-        <div className="h-screen md:grid md:grid-cols-6 w-full gap-4 p-12 md:p-6 relative">
+        <div className="h-svh md:grid md:grid-cols-6 w-full gap-4 p-12 md:p-6 relative">
 
             {/* Left panel */}
             <div className={`left-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-2 w-full h-full overflow-y-hidden overflow-x-visible transition-all duration-300 ${selectedJob ? 'opacity-0 -translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0' : 'opacity-100 translate-x-0'}`}>

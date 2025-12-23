@@ -1,4 +1,4 @@
-import { Figtree, Geist, Geist_Mono, Google_Sans_Code, Parkinsans } from "next/font/google";
+import {  Google_Sans_Code, Merriweather, Merriweather_Sans, Parkinsans } from "next/font/google";
 import "./globals.css";
 
 const font = Parkinsans({
@@ -6,8 +6,11 @@ const font = Parkinsans({
 });
 
 export const metadata = {
-  title: "Job Board",
+  title: "Airwork AI | All jobs",
   description: "Browse available job postings",
+  icons: {
+    icon: "/airwork.ai.svg",
+  },
 };
 
 export default function RootLayout({ children }) {
