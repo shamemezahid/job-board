@@ -70,7 +70,7 @@ export default function JobBoard() {
             {/* Left panel */}
             <div className={`left-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-2 w-full h-full overflow-y-hidden overflow-x-visible transition-all duration-300 ${selectedJob ? 'opacity-0 -translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0' : 'opacity-100 translate-x-0'}`}>
                 <div className="sticky top-2 flex flex-col p-5 pb-1 md:p-2">
-                    <div className="flex justify-between items-center mb-4 gap-3 flex-col md:flex-row">
+                    <div className="flex justify-between items-center mb-4 gap-3 flex-col sm:flex-row">
                         <h1 className="text-lg md:text-xl font-medium text-gray-800 text-center md:text-left">Jobs at Airwork AI</h1>
                         <select
                             value={sortBy}
@@ -421,7 +421,7 @@ export default function JobBoard() {
                         )}
 
                         {/* Question Sets / Skills Tests */}
-                        {selectedJob.questionSets && selectedJob.questionSets.length > 0 && (
+                        {/* {selectedJob.questionSets && selectedJob.questionSets.length > 0 && (
                             <div className="border-t pt-4">
                                 <p className="text-sm text-gray-400 mb-2">Required Skill Tests</p>
                                 <div className="space-y-3">
@@ -448,7 +448,7 @@ export default function JobBoard() {
                                     ))}
                                 </div>
                             </div>
-                        )}
+                        )} */}
 
                         {/* View Count */}
                         <div className="border-t pt-4">
