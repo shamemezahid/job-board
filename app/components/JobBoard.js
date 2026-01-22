@@ -2,6 +2,7 @@
 
 import { ArrowLeftIcon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { Toaster, toast } from 'sonner';
 
 export default function JobBoard() {
     const [jobs, setJobs] = useState([]);
@@ -30,6 +31,16 @@ export default function JobBoard() {
             rightPanelRef.current.scrollTop = 0;
         }
     }, [selectedJob]);
+
+    const handleCopyLink = async (jobId) => {
+        const url = `https://app.airwork.ai/jobs/${jobId}`;
+        try {
+            await navigator.clipboard.writeText(url);
+            toast.success('Job link copied to clipboard');
+        } catch (e) {
+            toast.error('Failed to copy link');
+        }
+    };
 
     useEffect(() => {
         const handleEscape = (e) => {
@@ -148,14 +159,28 @@ export default function JobBoard() {
                                 <h1 className="text-2xl font-semibold text-gray-800 mb-2">{selectedJob.title}</h1>
                                 <p className="text-sm text-gray-600">{selectedJob.company?.name || 'N/A'}</p>
                             </div>
-                            <a
-                                href={`https://app.airwork.ai/jobs/${selectedJob._id}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="px-6 py-3 bg-sky-100 text-sky-700 text-sm rounded-xl hover:bg-sky-200 transition-colors whitespace-nowrap"
-                            >
-                                Go to Job
-                            </a>
+                            <div className="flex items-center gap-3">
+                                <button
+                                    onClick={() => handleCopyLink(selectedJob._id)}
+                                    aria-label="Copy job link"
+                                    title="Copy job link"
+                                    className="cursor-copy p-3 h-full aspect-square bg-sky-100 text-sky-700 text-sm rounded-xl hover:bg-sky-200 transition-colors flex items-center justify-center"
+                                >
+                                    {/* Copy icon (inline SVG) */}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                    </svg>
+                                </button>
+                                <a
+                                    href={`https://app.airwork.ai/jobs/${selectedJob._id}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="px-6 py-3 bg-sky-100 text-sky-700 text-sm rounded-xl hover:bg-sky-200 transition-colors whitespace-nowrap"
+                                >
+                                    Go to Job
+                                </a>
+                            </div>
                         </div>
 
                         {/* Job Details */}
@@ -477,6 +502,7 @@ export default function JobBoard() {
                     </svg>
                 </button>
             )}
+            <Toaster position="top-center" />
         </div>
     );
 }
