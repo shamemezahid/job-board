@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export default function AltJobBoard() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [sortBy, setSortBy] = useState('deadline');
+    const scrollContainerRef = useRef(null);
 
     useEffect(() => {
         async function fetchJobs() {
@@ -45,6 +46,24 @@ export default function AltJobBoard() {
             }
         });
 
+    const handleScrollLeft = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollBy({
+                left: -400,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const handleScrollRight = () => {
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.scrollBy({
+                left: 400,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     if (loading) {
         return (
             <div className="gradient-bg w-full h-full flex items-center justify-center">
@@ -64,8 +83,9 @@ export default function AltJobBoard() {
     }
 
     return (
-        <div className="w-full h-full overflow-hidden">
-            <style jsx>{`
+        <>
+            <div className="w-full h-full overflow-hidden flex flex-col">
+                <style jsx>{`
                 @keyframes scrollHorizontal {
                     0% {
                         transform: translateX(0);
@@ -84,58 +104,80 @@ export default function AltJobBoard() {
                     animation-play-state: paused;
                 }
             `}</style>
-            <div className="w-full h-full overflow-hidden">
-                {/* Job Cards */}
-                <div className="scroll-container p-5 md:p-2 flex gap-4 pb-64" style={{ width: 'max-content' }}>
-                    {filteredJobs.length === 0 ? (
-                        <div className="flex flex-col items-center justify-center py-20" style={{ width: '100vw' }}>
-                            <div className="text-center">
-                                <p className="text-lg font-medium text-gray-700">No jobs currently available, Please come back later</p>
-                            </div>
-                        </div>
-                    ) : (
-                        filteredJobs.map(job => (
-                            <a
-                                key={job._id}
-                                href={`https://app.airwork.ai/jobs/${job._id}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="rounded-3xl p-6 cursor-pointer transition-all bg-white hover:bg-gray-50 block group flex-shrink-0"
-                                style={{ width: '350px' }}
-                            >
-                                <div className="flex justify-between items-center mb-2 gap-4">
-                                    <p className="text-sm text-gray-400">{job.company?.name || 'N/A'}</p>
-                                    <span className="text-sm text-sky-700 capitalize flex items-center overflow-hidden">
-                                        <span className="inline-block whitespace-nowrap transition-all duration-100 ease-in-out max-w-[200px] group-hover:max-w-0 group-hover:opacity-0 overflow-hidden">{job.status}</span>
-                                        <span className="inline-block whitespace-nowrap transition-all duration-300 ease-in-out max-w-0 opacity-0 overflow-hidden group-hover:max-w-[200px] group-hover:opacity-100">View job post</span>
-                                    </span>
+                <div className="w-full flex-1 flex items-center overflow-x-auto overflow-y-hidden" ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
+                    {/* Job Cards */}
+                    <div className="scroll-container p-5 md:p-2 flex gap-4" style={{ width: 'max-content' }}>
+                        {filteredJobs.length === 0 ? (
+                            <div className="flex flex-col items-center justify-center py-20" style={{ width: '100vw' }}>
+                                <div className="text-center">
+                                    <p className="text-lg font-medium text-gray-700">No jobs currently available, Please come back later</p>
                                 </div>
-                                <h2 className="flex items-baseline gap-[6px] mb-2">
-                                    <span className="text-base font-medium text-gray-800">{job.title}</span>
-                                </h2>
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-3 text-sm text-gray-700">
-                                        <span>{job.jobType || 'N/A'}</span>
-                                        <span className="text-gray-300">|</span>
-                                        <span>{job.engagementType || 'N/A'}</span>
-                                        <span className="text-gray-300">|</span>
-                                        <span>{job.natureOfJob || 'N/A'}</span>
-                                    </div>
-                                    <div className="flex justify-between text-sm text-gray-700">
-                                        <span>{job.currency} {job.minSalary?.toLocaleString()} - {job.maxSalary?.toLocaleString() || 'N/A'}</span>
-                                        <span className="flex items-center gap-2">
-                                            <span className="text-sm text-gray-400">Deadline</span>
-                                            <span className={`text-sm ${new Date(job.deadline) < new Date() ? 'text-red-900' : 'text-gray-700'}`}>
-                                                {new Date(job.deadline).toLocaleDateString()}
-                                            </span>
+                            </div>
+                        ) : (
+                            filteredJobs.map(job => (
+                                <a
+                                    key={job._id}
+                                    href={`https://app.airwork.ai/jobs/${job._id}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="rounded-3xl p-6 cursor-pointer transition-all bg-white hover:outline hover:outline-gray-100 block group flex-shrink-0"
+                                    style={{ width: '400px' }}
+                                >
+                                    <div className="flex justify-between items-center mb-2 gap-4">
+                                        <p className="text-sm text-gray-400">{job.company?.name || 'N/A'}</p>
+                                        <span className="text-sm text-sky-700 capitalize flex items-center overflow-hidden">
+                                            <span className="inline-block whitespace-nowrap transition-all duration-100 ease-in-out max-w-[200px] group-hover:max-w-0 group-hover:opacity-0 overflow-hidden">{job.status}</span>
+                                            <span className="inline-block whitespace-nowrap transition-all duration-300 ease-in-out max-w-0 opacity-0 overflow-hidden group-hover:max-w-[200px] group-hover:opacity-100">View job post</span>
                                         </span>
                                     </div>
-                                </div>
-                            </a>
-                        ))
-                    )}
+                                    <h2 className="flex items-baseline gap-[6px] mb-2">
+                                        <span className="text-base font-semibold text-gray-800">{job.title}</span>
+                                    </h2>
+                                    <div className="space-y-2">
+                                        <div className="flex items-center gap-3 text-sm text-gray-700">
+                                            <span>{job.jobType || 'N/A'}</span>
+                                            <span className="text-gray-300">|</span>
+                                            <span>{job.engagementType || 'N/A'}</span>
+                                            <span className="text-gray-300">|</span>
+                                            <span>{job.natureOfJob || 'N/A'}</span>
+                                        </div>
+                                        <div className="flex flex-col gap-2 text-sm text-gray-700">
+                                            <span>{job.currency} {job.minSalary?.toLocaleString()} - {job.maxSalary?.toLocaleString() || 'N/A'}</span>
+                                            <span className="flex items-center gap-2">
+                                                <span className="text-sm text-gray-400">Deadline</span>
+                                                <span className={`text-sm ${new Date(job.deadline) < new Date() ? 'text-red-900' : 'text-gray-700'}`}>
+                                                    {new Date(job.deadline).toLocaleDateString()}
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            ))
+                        )}
+                    </div>
                 </div>
             </div>
-        </div>
+            {/* Navigation Arrows */}
+            <div className="w-full flex justify-center items-center gap-4 p-6">
+                <button
+                    onClick={handleScrollLeft}
+                    className="w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex items-center justify-center"
+                    aria-label="Scroll left"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button
+                    onClick={handleScrollRight}
+                    className="w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 transition-colors flex items-center justify-center"
+                    aria-label="Scroll right"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </>
     );
 }

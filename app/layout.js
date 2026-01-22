@@ -1,7 +1,7 @@
-import {  Google_Sans_Code, Merriweather, Merriweather_Sans, Parkinsans } from "next/font/google";
+import {  Google_Sans_Code, Inter, Merriweather, Merriweather_Sans, Parkinsans } from "next/font/google";
 import "./globals.css";
 
-const font = Parkinsans({
+const font = Inter({
   subsets: ["latin"],
 });
 
