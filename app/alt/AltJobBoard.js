@@ -66,7 +66,7 @@ export default function AltJobBoard() {
 
     if (loading) {
         return (
-            <div className="gradient-bg w-full h-full flex items-center justify-center">
+            <div className="bg-gray-50 w-full h-full flex items-center justify-center">
                 <p className="text-sm text-gray-400">Loading jobs...</p>
             </div>
         );
@@ -74,7 +74,7 @@ export default function AltJobBoard() {
 
     if (error) {
         return (
-            <div className="gradient-bg w-full h-full flex flex-col items-center justify-center gap-4 p-6">
+            <div className="bg-gray-50 w-full h-full flex flex-col items-center justify-center gap-4 p-6">
                 <div className="text-center">
                     <p className="text-lg font-medium text-gray-700">No jobs currently available, Please come back later</p>
                 </div>
@@ -106,7 +106,7 @@ export default function AltJobBoard() {
             `}</style>
                 <div className="w-full flex-1 flex items-center overflow-x-auto overflow-y-hidden" ref={scrollContainerRef} style={{ scrollBehavior: 'smooth' }}>
                     {/* Job Cards */}
-                    <div className="scroll-container p-5 md:p-2 flex gap-4" style={{ width: 'max-content' }}>
+                    <div className="scroll-container mx-6 p-5 md:p-2 flex gap-4" style={{ width: 'max-content' }}>
                         {filteredJobs.length === 0 ? (
                             <div className="flex flex-col items-center justify-center py-20" style={{ width: '100vw' }}>
                                 <div className="text-center">
@@ -120,14 +120,14 @@ export default function AltJobBoard() {
                                     href={`https://app.airwork.ai/jobs/${job._id}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="rounded-3xl p-6 cursor-pointer transition-all bg-white hover:outline hover:outline-gray-100 block group flex-shrink-0"
-                                    style={{ width: '400px' }}
+                                    className="rounded-3xl p-6 cursor-pointer transition-all bg-white hover:outline hover:outline-gray-100 block group flex-shrink-0 gap-4"
+                                    style={{ minWidth: '360px' }}
                                 >
                                     <div className="flex justify-between items-center mb-2 gap-4">
                                         <p className="text-sm text-gray-400">{job.company?.name || 'N/A'}</p>
                                         <span className="text-sm text-sky-700 capitalize flex items-center overflow-hidden">
-                                            <span className="inline-block whitespace-nowrap transition-all duration-100 ease-in-out max-w-[200px] group-hover:max-w-0 group-hover:opacity-0 overflow-hidden">{job.status}</span>
-                                            <span className="inline-block whitespace-nowrap transition-all duration-300 ease-in-out max-w-0 opacity-0 overflow-hidden group-hover:max-w-[200px] group-hover:opacity-100">View job post</span>
+                                            <span className="inline-block whitespace-nowrap transition-all duration-100 ease-in-out max-w-[400px] group-hover:max-w-0 group-hover:opacity-0 overflow-hidden">{job.status}</span>
+                                            <span className="inline-block whitespace-nowrap transition-all duration-300 ease-in-out max-w-0 opacity-0 overflow-hidden group-hover:max-w-[400px] group-hover:opacity-100">View job post</span>
                                         </span>
                                     </div>
                                     <h2 className="flex items-baseline gap-[6px] mb-2">
@@ -142,7 +142,7 @@ export default function AltJobBoard() {
                                             <span>{job.natureOfJob || 'N/A'}</span>
                                         </div>
                                         <div className="flex flex-col gap-2 text-sm text-gray-700">
-                                            <span>{job.currency} {job.minSalary?.toLocaleString()} - {job.maxSalary?.toLocaleString() || 'N/A'}</span>
+                                            <span>{job.currency} {job.minSalary?.toLocaleString()} - {job.maxSalary?.toLocaleString() || 'N/A'} <span className="text-sm text-gray-400">/mo</span> </span>
                                             <span className="flex items-center gap-2">
                                                 <span className="text-sm text-gray-400">Deadline</span>
                                                 <span className={`text-sm ${new Date(job.deadline) < new Date() ? 'text-red-900' : 'text-gray-700'}`}>
