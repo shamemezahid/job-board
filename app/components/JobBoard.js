@@ -8,7 +8,7 @@ export default function JobBoard() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedJob, setSelectedJob] = useState(null);
-    const [sortBy, setSortBy] = useState('posted');
+    const [sortBy, setSortBy] = useState('deadline');
     const rightPanelRef = useRef(null);
 
     useEffect(() => {
@@ -80,7 +80,8 @@ export default function JobBoard() {
         <div className="md:grid md:grid-cols-6 w-full h-full gap-4 p-12 md:p-6 relative">
             {/* Left panel */}
             <div className={`left-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-2 w-full h-full overflow-y-hidden overflow-x-visible transition-all duration-300 ${selectedJob ? 'opacity-0 -translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0' : 'opacity-100 translate-x-0'}`}>
-                <div className="sticky top-2 flex flex-col p-5 pb-1 md:p-2">
+                
+                {/* <div className="sticky top-2 flex flex-col p-5 pb-1 md:p-2">
                     <div className="flex justify-between items-center mb-4 gap-3 flex-col sm:flex-row">
                         <h1 className="text-lg md:text-xl font-medium text-gray-800 text-center md:text-left">Jobs at Airwork AI</h1>
                         <select
@@ -94,10 +95,10 @@ export default function JobBoard() {
                             <option value="deadline">Deadline soon</option>
                         </select>
                     </div>
-                </div>
+                </div> */}
 
                 {/* Job Cards */}
-                <div className="p-5 md:p-2 h-full overflow-y-scroll overflow-x-visible grid grid-cols-1 gap-4 pb-64">
+                <div className="p-5 md:p-1 h-full overflow-y-scroll overflow-x-visible grid grid-cols-1 gap-4 pb-64">
                     {filteredJobs.length === 0 ? (
                         <div className="flex items-center justify-center">
                             <p className="text-sm text-gray-400">No jobs available at the moment</p>
@@ -388,7 +389,7 @@ export default function JobBoard() {
                         )}
 
                         {/* Screening Questions */}
-                        {selectedJob.screeningQuestions && (
+                        {/* {selectedJob.screeningQuestions && (
                             <div className="border-t pt-4">
                                 <p className="text-sm text-gray-400 mb-2">Screening Requirements</p>
                                 <div className="space-y-3">
@@ -443,7 +444,7 @@ export default function JobBoard() {
                                     )}
                                 </div>
                             </div>
-                        )}
+                        )} */}
 
                         {/* Question Sets / Skills Tests */}
                         {/* {selectedJob.questionSets && selectedJob.questionSets.length > 0 && (
@@ -479,6 +480,7 @@ export default function JobBoard() {
                         <div className="border-t pt-4">
                             <p className="text-sm text-gray-400">Views: {selectedJob.viewCount || 0}</p>
                         </div>
+
                     </div>
                 ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center">
