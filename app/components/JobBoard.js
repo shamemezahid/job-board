@@ -70,7 +70,7 @@ export default function JobBoard() {
 
     if (loading) {
         return (
-            <div className="gradient-bg flex items-center justify-center">
+            <div className="flex items-center justify-center">
                 <p className="text-sm text-gray-400">Loading jobs...</p>
             </div>
         );
