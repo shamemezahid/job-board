@@ -77,7 +77,7 @@ export default function JobBoard() {
     }
 
     return (
-        <div className="md:grid md:grid-cols-6 w-full h-full gap-4 p-12 md:p-6 relative">
+        <div className="md:grid md:grid-cols-6 w-full h-full gap-4 relative">
             {/* Left panel */}
             <div className={`left-panel absolute md:relative inset-0 md:inset-auto md:col-span-3 lg:col-span-2 w-full h-full overflow-y-hidden overflow-x-visible transition-all duration-300 ${selectedJob ? 'opacity-0 -translate-x-full pointer-events-none md:pointer-events-auto md:opacity-100 md:translate-x-0' : 'opacity-100 translate-x-0'}`}>
                 
@@ -113,9 +113,10 @@ export default function JobBoard() {
                                     : 'bg-white hover:bg-gray-50'
                                     }`}
                             >
-                                <div className="flex justify-between items-center mb-2 gap-4">
+                                <div className="flex items-center w-full mb-4 gap-3">
+                                    <img src={job.company?.companyLogo || 'airwork-blue-new.svg'}  alt="Company Logo" className="h-6 w-6 object-contain rounded-lg" />
                                     <p className="text-sm text-gray-400">{job.company?.name || 'N/A'}</p>
-                                    <span className="text-sm text-sky-700 capitalize">{job.status}</span>
+                                    {/* <span className="text-sm text-sky-700 capitalize">{job.status}</span> */}
                                 </div>
                                 <h2 className="flex items-baseline gap-[6px] mb-2">
                                     <span className="text-base font-medium text-gray-800">{job.title}</span>
@@ -155,7 +156,7 @@ export default function JobBoard() {
                         </button>
 
                         {/* Header */}
-                        <div className="border-b pb-4 flex justify-between items-start">
+                        <div className="border-b pb-4 justify-between flex flex-row flex-wrap items-start gap-4">
                             <div>
                                 <h1 className="text-2xl font-semibold text-gray-800 mb-2">{selectedJob.title}</h1>
                                 <p className="text-sm text-gray-600">{selectedJob.company?.name || 'N/A'}</p>
@@ -179,7 +180,7 @@ export default function JobBoard() {
                                     rel="noopener noreferrer"
                                     className="px-6 py-3 bg-sky-100 text-sky-700 text-sm rounded-xl hover:bg-sky-200 transition-colors whitespace-nowrap"
                                 >
-                                    Go to Job
+                                    Apply Now
                                 </a>
                             </div>
                         </div>
