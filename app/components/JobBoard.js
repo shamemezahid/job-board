@@ -109,14 +109,14 @@ export default function JobBoard() {
                                 key={job._id}
                                 onClick={() => setSelectedJob(job)}
                                 className={`w-full rounded-3xl p-6 cursor-pointer transition-all ${selectedJob?._id === job._id
-                                    ? 'bg-sky-50 outline-2 outline-sky-500'
+                                    ? 'bg-[#1560F5]/10 outline-2 outline-[#1560F5]'
                                     : 'bg-white hover:bg-gray-50'
                                     }`}
                             >
                                 <div className="flex items-center w-full mb-4 gap-3">
                                     <img src={job.company?.companyLogo || 'airwork-blue-new.svg'}  alt="Company Logo" className="h-6 w-6 object-contain rounded-lg" />
-                                    <p className="text-sm text-gray-400">{job.company?.name || 'N/A'}</p>
-                                    {/* <span className="text-sm text-sky-700 capitalize">{job.status}</span> */}
+                                    <p className="text-sm text-gray-600">{job.company?.name || 'N/A'}</p>
+                                    {/* <span className="text-sm text-[#1560F5] capitalize">{job.status}</span> */}
                                 </div>
                                 <h2 className="flex items-baseline gap-[6px] mb-2">
                                     <span className="text-base font-medium text-gray-800">{job.title}</span>
@@ -162,23 +162,22 @@ export default function JobBoard() {
                                 <p className="text-sm text-gray-600">{selectedJob.company?.name || 'N/A'}</p>
                             </div>
                             <div className="flex items-center gap-3">
-                                <button
+                                {/* <button
                                     onClick={() => handleCopyLink(selectedJob._id)}
                                     aria-label="Copy job link"
                                     title="Copy job link"
-                                    className="cursor-copy p-3 h-full aspect-square bg-sky-100 text-sky-700 text-sm rounded-xl hover:bg-sky-200 transition-colors flex items-center justify-center"
+                                    className="cursor-copy p-3 h-full aspect-square bg-[#1560F5]/10 text-[#1560F5] text-sm rounded-xl hover:bg-[#1560F5]/20 transition-colors flex items-center justify-center"
                                 >
-                                    {/* Copy icon (inline SVG) */}
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
                                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                                     </svg>
-                                </button>
+                                </button> */}
                                 <a
                                     href={`https://app.airwork.ai/jobs/${selectedJob._id}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-6 py-3 bg-sky-100 text-sky-700 text-sm rounded-xl hover:bg-sky-200 transition-colors whitespace-nowrap"
+                                    className="px-6 py-3 bg-[#1560F5]/10 text-[#1560F5] text-sm rounded-xl hover:bg-[#1560F5] hover:text-[#ffffff] transition-colors whitespace-nowrap"
                                 >
                                     Apply Now
                                 </a>
@@ -245,7 +244,7 @@ export default function JobBoard() {
                                 <p className="text-sm text-gray-400 mb-2">Required Skills</p>
                                 <div className="flex flex-wrap gap-2">
                                     {selectedJob.skills.map((skill, index) => (
-                                        <span key={index} className="px-3 py-1 bg-sky-50 text-sky-700 text-sm rounded-full">
+                                        <span key={index} className="px-3 py-1 bg-[#1560F5]/10 text-[#1560F5] text-sm rounded-full">
                                             {skill}
                                         </span>
                                     ))}
@@ -287,17 +286,17 @@ export default function JobBoard() {
                                     )}
                                     <div className="flex gap-4">
                                         {selectedJob.company.companyURL && (
-                                            <a href={selectedJob.company.companyURL} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-600 hover:underline">
+                                            <a href={selectedJob.company.companyURL} target="_blank" rel="noopener noreferrer" className="text-sm text-[#1560F5] hover:underline">
                                                 Website
                                             </a>
                                         )}
                                         {selectedJob.company.linkedinURL && (
-                                            <a href={selectedJob.company.linkedinURL} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-600 hover:underline">
+                                            <a href={selectedJob.company.linkedinURL} target="_blank" rel="noopener noreferrer" className="text-sm text-[#1560F5] hover:underline">
                                                 LinkedIn
                                             </a>
                                         )}
                                         {selectedJob.company.facebookURL && (
-                                            <a href={selectedJob.company.facebookURL} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-600 hover:underline">
+                                            <a href={selectedJob.company.facebookURL} target="_blank" rel="noopener noreferrer" className="text-sm text-[#1560F5] hover:underline">
                                                 Facebook
                                             </a>
                                         )}
@@ -381,7 +380,7 @@ export default function JobBoard() {
                                 </div>
                                 {selectedJob.projectAttachmentURL && (
                                     <div className="mt-2">
-                                        <a href={selectedJob.projectAttachmentURL} target="_blank" rel="noopener noreferrer" className="text-sm text-sky-600 hover:underline">
+                                        <a href={selectedJob.projectAttachmentURL} target="_blank" rel="noopener noreferrer" className="text-sm text-[#1560F5] hover:underline">
                                             View Project Attachment
                                         </a>
                                     </div>
@@ -462,7 +461,7 @@ export default function JobBoard() {
                                                     )}
                                                 </div>
                                                 {qs.selected && (
-                                                    <span className="text-xs px-2 py-1 bg-sky-100 text-sky-700 rounded">Required</span>
+                                                    <span className="text-xs px-2 py-1 bg-[#1560F5]/10 text-[#1560F5] rounded">Required</span>
                                                 )}
                                             </div>
                                             {qs.questionSet?.difficulty && (
@@ -485,8 +484,8 @@ export default function JobBoard() {
                     </div>
                 ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center">
-                        <img className="h-8 mb-12" src="https://airwork.ai/assets/airwork-logos/wide/airwork-blue-new.svg"></img>
-                        <p className="text-2x text-center text-sky-900 mb-3">Welcome to all jobs at Airwork AI</p>
+                        <img className="h-8 mb-12" src="airwork-blue-new.svg"></img>
+                        <p className="text-2x text-center text-[#1560F5] mb-3">Your next big opportunity awaits!</p>
                         <p className="text-sm text-center text-gray-400">Select a job to view details</p>
                     </div>
                 )}

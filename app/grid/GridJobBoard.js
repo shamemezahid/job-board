@@ -102,7 +102,7 @@ export default function GridJobBoard() {
                             >
                                 <div className="flex justify-between items-center mb-2 gap-4">
                                     <p className="text-sm text-gray-400">{job.company?.name || 'N/A'}</p>
-                                    <span className="text-sm text-sky-700 capitalize flex items-center overflow-hidden">
+                                    <span className="text-sm text-[#1560F5] capitalize flex items-center overflow-hidden">
                                         <span className="inline-block whitespace-nowrap transition-all duration-100 ease-in-out max-w-[400px] group-hover:max-w-0 group-hover:opacity-0 overflow-hidden">{job.status}</span>
                                         <span className="inline-block whitespace-nowrap transition-all duration-300 ease-in-out max-w-0 opacity-0 overflow-hidden group-hover:max-w-[400px] group-hover:opacity-100">View job post</span>
                                     </span>
