@@ -12,7 +12,7 @@ export default function AltJobBoard() {
     useEffect(() => {
         async function fetchJobs() {
             try {
-                const response = await fetch('https://api.airwork.ai/turbo/api/v1/public/jobs');
+                const response = await fetch('https://ignition.airwork.ai/api/v2/public/jobs');
                 if (!response.ok) {
                     throw new Error('Failed to fetch jobs');
                 }

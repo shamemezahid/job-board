@@ -14,7 +14,7 @@ export default function JobBoard() {
     useEffect(() => {
         async function fetchJobs() {
             try {
-                const response = await fetch('https://api.airwork.ai/turbo/api/v1/public/jobs');
+                const response = await fetch('https://ignition.airwork.ai/api/v2/public/jobs');
                 const result = await response.json();
                 setJobs(result.data || []);
             } catch (error) {
